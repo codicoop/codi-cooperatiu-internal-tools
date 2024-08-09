@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class FlowbiteClasses(AppConfig):
+class FlowbiteClassesConfig(AppConfig):
     name = "flowbite_classes"
 
     def ready(self):
