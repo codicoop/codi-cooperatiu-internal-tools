@@ -1,7 +1,42 @@
-from django import forms
-from django.template import Context, Template
+from importlib import reload
 
+from django import forms
+from django.apps import apps
+from django.template import Context, Template
+from django.test.utils import override_settings
+
+import flowbite_classes
 from flowbite_classes.forms import BooleanBoundField, CharBoundField
+
+
+@override_settings(CODI_COOP_ENABLE_MONKEY_PATCH=False)
+def test_monkey_patch_not_applied_without_config(mocker):
+    # Fer mock del mètode que aplica el monkey patch
+    mock_apply_patch = mocker.patch("flowbite_classes.apps.FlowbiteClassesConfig.apply_monkey_patch")
+
+    # Recarregar el mòdul apps.py perquè el codi de ready() s'executi de nou
+    reload(flowbite_classes)  # Recarregar el mòdul que conté la classe
+
+    # Forçar la crida a ready() novament
+    apps.get_app_config("flowbite_classes").ready()
+
+    # Verificar que la funció apply_monkey_patch no s'ha cridat
+    mock_apply_patch.assert_not_called()
+
+
+@override_settings(CODI_COOP_ENABLE_MONKEY_PATCH=True)
+def test_monkey_patch_applied_with_config(mocker):
+    # Fer mock del mètode que aplica el monkey patch
+    mock_apply_patch = mocker.patch("flowbite_classes.apps.FlowbiteClassesConfig.apply_monkey_patch")
+
+    # Recarregar el mòdul apps.py perquè el codi de ready() s'executi de nou
+    reload(flowbite_classes)  # Recarregar el mòdul que conté la classe
+
+    # Forçar la crida a ready() novament
+    apps.get_app_config("flowbite_classes").ready()
+
+    # Verificar que la funció apply_monkey_patch s'ha cridat una vegada
+    mock_apply_patch.assert_called_once()
 
 
 class CharForm(forms.Form):

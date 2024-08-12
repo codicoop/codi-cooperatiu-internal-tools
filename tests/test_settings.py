@@ -11,6 +11,8 @@ INSTALLED_APPS = (
     "tests",
 )
 
+CODI_COOP_ENABLE_MONKEY_PATCH = True
+
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}}
 
 MIDDLEWARE_CLASSES = (
