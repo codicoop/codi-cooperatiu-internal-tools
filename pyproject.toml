@@ -2,6 +2,26 @@
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "codi-cooperatiu-internal-tools"
+version = "0.0.1"
+requires-python = ">=3.8"
+description = "Codi Cooperatiu internal tools"
+dependencies = ["django>=4.2"]
+readme = "README.md"
+keywords = ["django", "forms", "flowbite"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Framework :: Django",
+     "Operating System :: OS Independent"
+]
+
+
+[project.urls]
+homepage = "https://github.com/codicoop/codi-cooperatiu-internal-tools"
+repository = "https://github.com/codicoop/codi-cooperatiu-internal-tools"
+
+
 [tool.black]
 line-length = 119
 target-version = ['py38']

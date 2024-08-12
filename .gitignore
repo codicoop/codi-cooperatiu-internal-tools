@@ -8,6 +8,7 @@ dist/*
 develop-eggs/*
 parts/*
 downloads/*
+*.whl
 
 #egg's specific
 *.egg-info
