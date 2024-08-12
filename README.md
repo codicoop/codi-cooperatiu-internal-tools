@@ -37,6 +37,17 @@ CODI_COOP_ENABLE_MONKEY_PATCH = False  # Valor per defecte
 
 Si aquest paràmetre està desactivat (False), els camps de formulari de Django funcionaran amb el seu comportament i estil per defecte, sense cap personalització addicional.
 
+#### FORM_RENDERER
+
+També tenim la possibilitat de fer servir la plantilla personalitzada que mostra tot el HTML vinculat amb els camps (`<label />` i qualsevol altre HTML) amb classes de Flowbite.
+En aquest cas, hauríem de fer servir el *form render* `CustomFormRenderer` configurant-ho al fitxer `settings.py` amb el parametre `FORM_RENDERER`:
+
+```python
+# settings.py
+
+FORM_RENDERER = "flowbite_css.renderers.CustomFormRenderer"
+```
+
 # Contribució
 ## Instal·la els requisits
 
