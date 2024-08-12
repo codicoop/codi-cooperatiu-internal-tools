@@ -1,6 +1,42 @@
 # codi-cooperatiu-internal-tools
 Eines i mòduls interns de Codi Cooperatiu
 
+## flowbite_css
+
+`flowbite_css` aplica personalitzacions de formulari automàticament. Aquesta personalització fa servir estils de Flowbite, una personalització de Tailwind.
+
+### Configuració
+
+Per fer servir aquestes personalitzacions, hem d'afegir l'aplicació `flowbite_css` al paràmetre `INSTALLED_APPS` del fitxer `settings.py`.
+
+#### CODI_COOP_ENABLE_MONKEY_PATCH
+
+El paràmetre `CODI_COOP_ENABLE_MONKEY_PATCH` en el fitxer `settings.py` controla si s'ha d'aplicar o no un monkey patch als camps de formulari de Django dins la vostra aplicació.
+
+Per defecte, el paràmetre `CODI_COOP_ENABLE_MONKEY_PATCH` està desactivat (`False`). Això significa que el monkey patch no s'aplicarà. Si voleu activar el monkey patch, heu d'afegir el paràmetre `CODI_COOP_ENABLE_MONKEY_PATCH` al fitxer `settings.py` i establir-lo a `True`.
+
+#### Exemples:
+
+**Activar el monkey patching:**
+
+```python
+# settings.py
+
+CODI_COOP_ENABLE_MONKEY_PATCH = True
+```
+
+Quan aquest paràmetre està activat (`True`), els camps de formulari de Django com `CharField`, `EmailField`, `IntegerField`, `ChoiceField`, `MultipleChoiceField`, i `BooleanField` utilitzaran els camps personalitzats definits en la vostra aplicació (`CharBoundField`, `BooleanBoundField`, etc.), permetent un estil i comportament personalitzats en els vostres formularis.
+
+**Desactivar el monkey patching:**
+
+```python
+# settings.py
+
+CODI_COOP_ENABLE_MONKEY_PATCH = False  # Valor per defecte
+```
+
+Si aquest paràmetre està desactivat (False), els camps de formulari de Django funcionaran amb el seu comportament i estil per defecte, sense cap personalització addicional.
+
 # Contribució
 ## Instal·la els requisits
 
