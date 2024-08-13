@@ -38,6 +38,6 @@ jobs:
         ENV_PREFIX=$(tr -C -d "0-9" <<< "${{ matrix.python-version }}")
         TOXENV=$(tox --listenvs | grep "^py$ENV_PREFIX" | tr '\n' ',') tox
     - name: Run lint
-      if: ${{ matrix.python-version == '3.9' }}
+      if: ${{ matrix.python-version == '3.10' }}
       run: |
         tox -e lint
