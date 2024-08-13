@@ -5,9 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "codi-cooperatiu-internal-tools"
 version = "0.0.2"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 description = "Codi Cooperatiu internal tools"
-dependencies = ["django>=4.2"]
+dependencies = ["django>=5.0a1"]
 readme = "README.md"
 keywords = ["django", "forms", "flowbite"]
 classifiers = [
@@ -24,7 +24,7 @@ repository = "https://github.com/codicoop/codi-cooperatiu-internal-tools"
 
 [tool.black]
 line-length = 119
-target-version = ['py38']
+target-version = ['py310']
 
 [tool.isort]
 profile = "black"
