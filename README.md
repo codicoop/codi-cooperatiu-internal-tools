@@ -85,3 +85,36 @@ If you do not have `make` installed, the test suite can also be executed using:
 ```commandline
 pytest --ds=tests.test_settings --cov=flowbite_classes
 ```
+
+## Publishing a New Version to PyPI
+
+To release a new version of the library to PyPI, follow these steps:
+
+1. **Prepare a Release Branch:**
+   - Ensure all changes are merged into the `master` branch.
+   - Create a new branch named after the release version (e.g., `v1.2.3`).
+   - Update the `version` field in the `project` section of the `pyproject.toml` file to the new release version.
+   - Commit the changes with a message like `Version <release-version>`.
+   - Push the branch to the remote repository and create a pull request titled `Version <release-version>`.
+
+2. **Tag the Release:**
+   - Once the pull request has been reviewed and merged, create a Git tag for the release. Use the following command:
+     ```bash
+     git tag -a <release-version> <commit> -m "Release <release-version>"
+     ```
+     Replace `<release-version>` with the version number (e.g., `v1.2.3`) and `<commit>` with the commit hash of the merged pull request.
+   - Push the tag to the remote repository:
+     ```bash
+     git push origin <release-version>
+     ```
+
+3. **Create a GitHub Release:**
+   - Open the [GitHub Releases page](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release).
+   - Click "Draft a new release."
+   - In the **Tag version** field, select the previously pushed tag `<release-version>`.
+   - Use `<release-version>` as the release title.
+   - In the description, list the changes introduced in this release compared to the previous version.
+   - Click "Publish release."
+
+4. **Automatic Deployment:**
+   - Once the release is published, GitHub Actions will automatically trigger the deployment process and publish the new version of the library to PyPI, as configured in the repository.
