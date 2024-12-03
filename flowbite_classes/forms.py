@@ -3,7 +3,7 @@ from django import forms
 
 class BaseBoundField(forms.BoundField):
     """
-    Just for documentation.
+    The reason we're overriding get_context() instead of css_classes() is:
     Method css_classes() is called when rendering the "div.html" template, in
     the line:
     <div{% with classes=field.css_classes %}{% if classes %}
