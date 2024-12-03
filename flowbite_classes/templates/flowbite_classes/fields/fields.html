@@ -1,0 +1,9 @@
+{% load i18n %}
+
+{% if field.field.widget.input_type == "checkbox" %}
+  {% include "./checkbox.html" %}
+{% elif field.field.widget.input_type == "radio" %}
+  {% include "./radio.html" %}
+{% else %}
+  {% include "./other.html" %}
+{% endif %}
