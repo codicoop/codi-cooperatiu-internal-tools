@@ -19,3 +19,10 @@ def boolean_get_bound_field(self, form, field_name):
 
 
 forms.BooleanField.get_bound_field = boolean_get_bound_field
+
+
+def file_get_bound_field(self, form, field_name):
+    return flowbite_classes.forms.FileBoundField(form, self, field_name)
+
+
+forms.FileField.get_bound_field = file_get_bound_field
