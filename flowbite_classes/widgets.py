@@ -11,3 +11,11 @@ class FlowBiteDateTimeInput(forms.DateTimeInput):
     def __init__(self, **kwargs):
         kwargs["format"] = "%Y-%m-%dT%H:%M"
         super().__init__(**kwargs)
+
+
+class FlowBiteDateInput(forms.DateTimeInput):
+    input_type = "date"
+
+    def __init__(self, **kwargs):
+        kwargs["format"] = "%Y-%m-%d"
+        super().__init__(**kwargs)
