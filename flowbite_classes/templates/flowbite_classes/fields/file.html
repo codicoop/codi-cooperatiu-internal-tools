@@ -35,12 +35,20 @@
       </div>
     {% endif %}
   </label>
-  
-  {{ field }}
 
   {% if field.errors %}
-  <div class="mt-2 text-xs text-red-600 dark:text-red-500">
+  <div class="mb-2 text-xs text-red-600 dark:text-red-500">
     {{ field.errors }}
   </div>
   {% endif %}
+
+  <div class="overflow-hidden
+    [&>a]:font-bold [&>a]:underline [&>a]:text-primary-700 
+    [&>a]:block [&>a]:truncate [&>a]:mb-2
+    [&>label]:mb-2 [&>label]:inline-block [&>label]:pl-1
+    text-sm
+  ">
+    {{ field }}
+  </div>
+
 </div>
