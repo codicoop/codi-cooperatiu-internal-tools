@@ -26,3 +26,17 @@ def file_get_bound_field(self, form, field_name):
 
 
 forms.FileField.get_bound_field = file_get_bound_field
+
+
+def time_get_bound_field(self, form, field_name):
+    return flowbite_classes.forms.TimeBoundField(form, self, field_name)
+
+
+forms.TimeField.get_bound_field = time_get_bound_field
+
+
+def date_get_bound_field(self, form, field_name):
+    return flowbite_classes.forms.DateBoundField(form, self, field_name)
+
+
+forms.DateField.get_bound_field = date_get_bound_field
