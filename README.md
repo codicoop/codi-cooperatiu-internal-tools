@@ -52,6 +52,8 @@ FORM_RENDERER = "flowbite_css.renderers.CustomFormRenderer"
 
 ## Install Requirements
 
+Make sure you are using python >3.10.
+
 Install the development dependencies by navigating to the "codi-cooperatiu-internal-tools" folder and running:
 
 ```commandline
@@ -85,6 +87,31 @@ If you do not have `make` installed, the test suite can also be executed using:
 ```commandline
 pytest --ds=tests.test_settings --cov=flowbite_classes
 ```
+
+## Run linting, formatting and tests using tox
+
+[Install tox](https://tox.wiki/en/4.23.2/installation.html) in a isolated
+environment, for exampel if you use pip, run:
+
+```commandline
+python -m pip install --user tox
+```
+
+Then you can run it with:
+
+```commandline
+python -m tox
+```
+
+One of the tox commands is the linter, you can run it alone with:
+
+```commandline
+python -m tox -e lint
+```
+
+Note that tox is meant to be run in the github action that will provide different
+python versions, but if you run it like that it will only run in the version
+that you have in your environment.
 
 ## Publishing a New Version to PyPI
 

@@ -61,50 +61,34 @@ class BooleanBoundField(BaseBoundField):
 
 
 class FileBoundField(BaseBoundField):
-    base_classes = (
-        "text-sm border rounded-lg block w-full px-2.5"
-    )
-    no_error_classes = (
-        "bg-gray-50 border-gray-300 text-gray-900 "
-        "focus:ring-primary-600 focus:border-primary-600"
-    )
+    base_classes = "text-sm border rounded-lg block w-full px-2.5"
+    no_error_classes = "bg-gray-50 border-gray-300 text-gray-900 " "focus:ring-primary-600 focus:border-primary-600"
     error_classes = (
-        "bg-red-50 border-red-500 text-red-900 placeholder-red-700 " 
-        "focus:ring-red-500 focus:border-red-500"
+        "bg-red-50 border-red-500 text-red-900 placeholder-red-700 " "focus:ring-red-500 focus:border-red-500"
     )
 
 
 class TimeBoundField(BaseBoundField):
     """
-    When using this field type, you also have use the widget
+    When using this field type, you also have to use the widget
     flowbite_classes.widgets.FlowBiteTimeInput in your form.
     """
-    base_classes = (
-        "text-sm border rounded-lg block w-full p-2.5"
-    )
-    no_error_classes = (
-        "bg-gray-50 border-gray-300 text-gray-900 "
-        "focus:ring-primary-600 focus:border-primary-600"
-    )
+
+    base_classes = "text-sm border rounded-lg block w-full p-2.5"
+    no_error_classes = "bg-gray-50 border-gray-300 text-gray-900 " "focus:ring-primary-600 focus:border-primary-600"
     error_classes = (
-        "bg-red-50 border-red-500 text-red-900 placeholder-red-700 " 
-        "focus:ring-red-500 focus:border-red-500"
+        "bg-red-50 border-red-500 text-red-900 placeholder-red-700 " "focus:ring-red-500 focus:border-red-500"
     )
 
 
 class DateBoundField(BaseBoundField):
     """
-    When using this field type, you also have use the widget
+    When using this field type, you also have to use the widget
     flowbite_classes.widgets.FlowBiteDateInput in your form.
     """
-    base_classes = (
-        "text-sm border rounded-lg block w-full p-2.5"
-    )
-    no_error_classes = (
-        "bg-gray-50 border-gray-300 text-gray-900 focus:ring-primary-600 "
-        "focus:border-primary-600"
-    )
+
+    base_classes = "text-sm border rounded-lg block w-full p-2.5"
+    no_error_classes = "bg-gray-50 border-gray-300 text-gray-900 focus:ring-primary-600 " "focus:border-primary-600"
     error_classes = (
-        "bg-red-50 border-red-500 text-red-900 placeholder-red-700 "
-        "focus:ring-red-500 focus:border-red-500"
+        "bg-red-50 border-red-500 text-red-900 placeholder-red-700 " "focus:ring-red-500 focus:border-red-500"
     )
