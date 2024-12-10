@@ -73,6 +73,10 @@ class FileForm(forms.Form):
     file_field = forms.FileField()
 
 
+class NumericForm(forms.Form):
+    number_field = forms.IntegerField(widget=widgets.FlowBiteNumericInput, help_text="Help number_field")
+
+
 def test_monkey_patching_applied_to_charfield():
     """
     Verifies that the monkey patching applied to forms.CharField works correctly.
@@ -181,3 +185,25 @@ def test_monkey_patching_applied_to_filefield():
 
     # Verify that the no-error classes have been applied
     assert FileBoundField.no_error_classes in html, "No-error classes were not applied correctly."
+
+
+def test_input_properties_in_number_field():
+    """
+    Verifies that the monkey patching applied to forms.CharField works correctly.
+    """
+    template = Template(
+        """
+        {{ form }}
+        """
+    )
+    form_instance = NumericForm()
+    html = template.render(Context({"form": form_instance}))
+
+    # Verify that only one input is rendered
+    assert html.count("<input") == 1
+
+    # Verify that the field type is text
+    assert html.count('type="text"') == 1
+
+    # Verify that the property data-input-counter is present
+    assert html.count("data-input-counter") == 1
