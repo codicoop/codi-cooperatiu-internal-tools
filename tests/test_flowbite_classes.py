@@ -7,7 +7,7 @@ from django.test.utils import override_settings
 
 import flowbite_classes
 from flowbite_classes import widgets
-from flowbite_classes.forms import BooleanBoundField, CharBoundField, TimeBoundField
+from flowbite_classes.forms import BooleanBoundField, CharBoundField, DateBoundField, TimeBoundField
 
 
 @override_settings(CODI_COOP_ENABLE_MONKEY_PATCH=False)
@@ -63,6 +63,10 @@ class BooleanForm(forms.Form):
 
 class TimeForm(forms.Form):
     time_field = forms.TimeField(widget=widgets.FlowBiteTimeInput, help_text="Help time_field")
+
+
+class DateForm(forms.Form):
+    date_field = forms.TimeField(widget=widgets.FlowBiteDateInput, help_text="Help date_field")
 
 
 def test_monkey_patching_applied_to_charfield():
@@ -129,3 +133,25 @@ def test_monkey_patching_applied_to_timefield():
 
     # Verify that the no-error classes have been applied
     assert TimeBoundField.no_error_classes in html, "No-error classes were not applied correctly."
+
+
+def test_monkey_patching_applied_to_datefield():
+    """
+    Verifies that the monkey patching applied to forms.CharField works correctly.
+    """
+    template = Template(
+        """
+        {{ form }}
+        """
+    )
+    form_instance = DateForm()
+    html = template.render(Context({"form": form_instance}))
+
+    # Verify that only one input is rendered
+    assert html.count("<input") == 1
+
+    # Verify that the base classes have been applied
+    assert DateBoundField.base_classes in html, "Base classes were not applied correctly."
+
+    # Verify that the no-error classes have been applied
+    assert DateBoundField.no_error_classes in html, "No-error classes were not applied correctly."
