@@ -131,6 +131,14 @@ a `data-input-counter` property that will limit the field to numeric characters.
 Implementation: use the widget `widgets.FlowBiteNumericInput` as you would
 normally do with any Django widget.
 
+#### Incremental numeric input
+
+This input displays a plus and minus buttons at the sides of the control for
+increasing and decrementing the number.
+
+Implementation: use the widget `widgets.FlowBiteNumericIncrementalInput` as you would
+normally do with any Django widget.
+
 # Contribution
 
 ## Install Requirements
