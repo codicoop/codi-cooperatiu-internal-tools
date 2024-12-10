@@ -12,8 +12,6 @@
   {% include "./select.html" %}
 {% elif field.field.widget.input_type == "file" %}
   {% include "./file.html" %}
-{% elif field.field.widget.input_type == "number" %}
-  {% include "./number.html" %}
 {% else %}
   {% include "./other.html" %}
 {% endif %}

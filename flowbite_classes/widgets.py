@@ -19,3 +19,18 @@ class FlowBiteDateInput(forms.DateTimeInput):
     def __init__(self, **kwargs):
         kwargs["format"] = "%Y-%m-%d"
         super().__init__(**kwargs)
+
+
+class FlowBiteNumericInput(forms.NumberInput):
+    input_type = "text"
+
+    def __init__(self, attrs=None):
+        attrs = attrs or {}
+        if attrs is None:
+            attrs = {}
+        attrs.update(
+            {
+                "data-input-counter": "",
+            }
+        )
+        super().__init__(attrs)
