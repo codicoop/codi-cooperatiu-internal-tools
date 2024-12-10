@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "codi-cooperatiu-internal-tools"
-version = "0.1"
+version = "0.2"
 requires-python = ">=3.10"
 description = "Codi Cooperatiu internal tools"
 dependencies = ["django>=5.0a1"]
