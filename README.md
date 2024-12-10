@@ -50,10 +50,67 @@ FORM_RENDERER = "flowbite_css.renderers.CustomFormRenderer"
 
 ### Available fields
 
+This library monkey patches many of the default Django fields, meaning that
+when you use these Django fields as you would normally do in any model,
+you will actually end up using a version of the field that uses a custom
+template.
+
+The custom template is specified at `renderers.CustomFormRenderer`.
+
+The custom field templates define the field part of the form control, which means,
+the part that is not the widget itself.
+As you'll see in every template in the `fields` directory, there's the markup for
+rendering labels, errors and so on, but the control itself is rendered with:
+
+`{{ field }}`
+
+This is the part depends on what widget is specified in the Django Form class 
+for that field.
+
+We needed to control the classes that will be included in the control itself
+(the widget), which needed to be different depending on having or not an error
+in the field.
+
+The problem is that when Django renders the widget, the context does not include
+any way to know if the field had an error or not.
+
+Check `forms.BaseBoundField` to understand how we solved the problem.
+
+#### CharField, EmailField, IntegerField, ChoiceField, MultipleChoiceField
+
+Bound field that sets the custom classes in the widget: `forms.CharField`
+Custom field template: `fields/other.html`.
+
+#### BooleanBoundField
+
+Bound field that sets the custom classes in the widget: `forms.BooleanBoundField`
+Custom field template: `fields/checkbox.html`.
+
+#### FileBoundField
+
+Bound field that sets the custom classes in the widget: `forms.FileBoundField`
+Custom field template: `fields/file.html`.
+
+#### TimeBoundField
+
+Bound field that sets the custom classes in the widget: `forms.TimeBoundField`
+Custom field template: `fields/time.html`.
+
+To use this field is necessary to use the `widgets.FlowBiteTimeInput`
+widget in your form's field.
+
+#### DateBoundField
+
+Bound field that sets the custom classes in the widget: `forms.DateBoundField`
+Custom field template: `fields/date.html`.
+
+To use this field is necessary to use the `widgets.FlowBiteDateInput`
+widget in your form's field.
+
 ### Available widgets
 
-The widgets in this section can work with the `CharField` field configuration, 
-which is monkey patched to use the `CharBoundField` as a bound field, and 
+The widgets in this section can work with the `CharField` field classes and
+template, which is monkey patched to use the `CharBoundField` as a bound field, and 
 therefore, the field part will be rendered with the `fields/other.html` tempalte.
 
 In other words, the only part that we need to override to achieve the desired
