@@ -48,6 +48,32 @@ You can also use a custom template to render all the HTML associated with the fi
 FORM_RENDERER = "flowbite_css.renderers.CustomFormRenderer"
 ```
 
+### Available fields
+
+### Available widgets
+
+The widgets in this section can work with the `CharField` field configuration, 
+which is monkey patched to use the `CharBoundField` as a bound field, and 
+therefore, the field part will be rendered with the `fields/other.html` tempalte.
+
+In other words, the only part that we need to override to achieve the desired
+result is the widget template and/or properties.
+
+#### Standard numeric input
+
+In most cases we want to show a numeric field that doesn't come with the up and
+down arrows to increase and decrease the number.
+Additionally, we want to control how the number is rendered in the field, i.e.,
+if we're outputting the number with commas as a decimal separator, some browsers
+will modify the numeric input controls and replace the decimal separator with
+dots, causing inconsistent behavior.
+
+To achieve that we need the input control to be a `text` type, and to add to it
+a `data-input-counter` property that will limit the field to numeric characters.
+
+Implementation: use the widget `widgets.FlowBiteNumericInput` as you would
+normally do with any Django widget.
+
 # Contribution
 
 ## Install Requirements
