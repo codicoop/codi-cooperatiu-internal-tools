@@ -6,7 +6,8 @@ from django.template import Context, Template
 from django.test.utils import override_settings
 
 import flowbite_classes
-from flowbite_classes.forms import BooleanBoundField, CharBoundField
+from flowbite_classes import widgets
+from flowbite_classes.forms import BooleanBoundField, CharBoundField, DateBoundField, FileBoundField, TimeBoundField
 
 
 @override_settings(CODI_COOP_ENABLE_MONKEY_PATCH=False)
@@ -60,6 +61,18 @@ class BooleanForm(forms.Form):
     boolean_field = forms.BooleanField(widget=forms.CheckboxInput, help_text="Help boolean_field")
 
 
+class TimeForm(forms.Form):
+    time_field = forms.TimeField(widget=widgets.FlowBiteTimeInput, help_text="Help time_field")
+
+
+class DateForm(forms.Form):
+    date_field = forms.DateField(widget=widgets.FlowBiteDateInput, help_text="Help date_field")
+
+
+class FileForm(forms.Form):
+    file_field = forms.FileField()
+
+
 def test_monkey_patching_applied_to_charfield():
     """
     Verifies that the monkey patching applied to forms.CharField works correctly.
@@ -102,3 +115,69 @@ def test_monkey_patching_applied_to_booleanfield():
 
     # Verify that the no-error classes have been applied
     assert BooleanBoundField.no_error_classes in html, "No-error classes were not applied correctly."
+
+
+def test_monkey_patching_applied_to_timefield():
+    """
+    Verifies that the monkey patching applied to forms.CharField works correctly.
+    """
+    template = Template(
+        """
+        {{ form }}
+        """
+    )
+    form_instance = TimeForm()
+    html = template.render(Context({"form": form_instance}))
+
+    # Verify that only one input is rendered
+    assert html.count("<input") == 1
+
+    # Verify that the base classes have been applied
+    assert TimeBoundField.base_classes in html, "Base classes were not applied correctly."
+
+    # Verify that the no-error classes have been applied
+    assert TimeBoundField.no_error_classes in html, "No-error classes were not applied correctly."
+
+
+def test_monkey_patching_applied_to_datefield():
+    """
+    Verifies that the monkey patching applied to forms.CharField works correctly.
+    """
+    template = Template(
+        """
+        {{ form }}
+        """
+    )
+    form_instance = DateForm()
+    html = template.render(Context({"form": form_instance}))
+
+    # Verify that only one input is rendered
+    assert html.count("<input") == 1
+
+    # Verify that the base classes have been applied
+    assert DateBoundField.base_classes in html, "Base classes were not applied correctly."
+
+    # Verify that the no-error classes have been applied
+    assert DateBoundField.no_error_classes in html, "No-error classes were not applied correctly."
+
+
+def test_monkey_patching_applied_to_filefield():
+    """
+    Verifies that the monkey patching applied to forms.CharField works correctly.
+    """
+    template = Template(
+        """
+        {{ form }}
+        """
+    )
+    form_instance = FileForm()
+    html = template.render(Context({"form": form_instance}))
+
+    # Verify that only one input is rendered
+    assert html.count("<input") == 1
+
+    # Verify that the base classes have been applied
+    assert FileBoundField.base_classes in html, "Base classes were not applied correctly."
+
+    # Verify that the no-error classes have been applied
+    assert FileBoundField.no_error_classes in html, "No-error classes were not applied correctly."
